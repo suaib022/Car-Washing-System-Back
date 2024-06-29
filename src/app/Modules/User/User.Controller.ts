@@ -10,12 +10,23 @@ const SignUpUser = catchAsync(async (req, res) => {
     statusCose: httpStatus.OK,
     success: true,
     message: 'User registered successfully',
-    data: {
-      result,
-    },
+    data: result,
+  });
+});
+
+const logInUser = catchAsync(async (req, res) => {
+  const result = await UserServices.logInUser(req.body);
+
+  sendResponse(res, {
+    statusCose: httpStatus.OK,
+    success: true,
+    message: 'User logged In !',
+    token: result.accessToken,
+    data: result.userWithoutPassword,
   });
 });
 
 export const UserControllers = {
   SignUpUser,
+  logInUser,
 };

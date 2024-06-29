@@ -1,9 +1,10 @@
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+import { Response } from 'express';
 
 type TResponse<T> = {
-  statusCose: number;
   success: boolean;
+  statusCose: number;
   message?: string;
+  token?: string;
   data: T;
 };
 
@@ -11,6 +12,7 @@ const sendResponse = <T>(res: Response, data: TResponse<T>) => {
   res.status(data?.statusCose).json({
     success: data.success,
     message: data.message,
+    token: data.token,
     data: data.data,
   });
 };
