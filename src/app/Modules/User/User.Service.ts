@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import AppError from '../../Errors/AppError';
 import { TLoginUser, TUser } from './User.Interface';
-import { User, userSchema } from './User.Model';
+import { User } from './User.Model';
 import { createToken } from '../../Utils/createToken';
 import config from '../../config';
 
