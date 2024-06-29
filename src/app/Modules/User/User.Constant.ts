@@ -1,3 +1,8 @@
-import { TRole } from './User.Interface';
+export const USER_ROLE = {
+  admin: 'admin',
+  user: 'user',
+};
 
-export const Role: TRole[] = ['admin', 'user'];
+export type TUserRole = keyof typeof USER_ROLE;
+
+export const Role: TUserRole[] = ['admin', 'user'];
