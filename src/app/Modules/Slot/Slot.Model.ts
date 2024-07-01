@@ -34,4 +34,4 @@ const SlotSchema = new Schema<TSlot>(
   },
 );
 
-export const Student = model<TSlot>('Slot', SlotSchema);
+export const Slot = model<TSlot>('Slot', SlotSchema);
