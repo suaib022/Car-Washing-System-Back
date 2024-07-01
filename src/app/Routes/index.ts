@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { UserRoutes } from '../Modules/User/User.Route';
 import { ServiceRoutes } from '../Modules/Service/Service.Route';
 import { SlotRoutes } from '../Modules/Slot/Slot.Route';
+import { BookingRoutes } from '../Modules/Booking/Booking.Route';
 
 const router = Router();
 
@@ -26,10 +27,14 @@ const moduleRoutes: RouteConfig[] = [
       },
     ],
   },
-  // {
-  //   path: '/slots',
-  //   route: SlotRoutes,
-  // },
+  {
+    path: '/slots/availability',
+    route: SlotRoutes,
+  },
+  {
+    path: '/bookings',
+    route: BookingRoutes,
+  },
 ];
 
 const applyRoutes = (routes: RouteConfig[], parentPath = '') => {

@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from 'mongoose';
 import { TSlot } from './Slot.Interface';
 import { BookingStatus } from './Slot.Constant';
 
@@ -7,6 +7,7 @@ const SlotSchema = new Schema<TSlot>(
     service: {
       type: Schema.Types.ObjectId,
       required: true,
+      ref: 'Service',
     },
     date: {
       type: Date,
@@ -34,4 +35,4 @@ const SlotSchema = new Schema<TSlot>(
   },
 );
 
-export const Slot = model<TSlot>('Slot', SlotSchema);
+export const Slot = mongoose.model<TSlot>('Slot', SlotSchema);

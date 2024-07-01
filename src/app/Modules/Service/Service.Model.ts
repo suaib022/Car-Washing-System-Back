@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from 'mongoose';
 import { TService } from './Service.Interface';
 
 export const serviceSchema = new Schema<TService>(
@@ -29,4 +29,4 @@ export const serviceSchema = new Schema<TService>(
   },
 );
 
-export const Service = model<TService>('Service', serviceSchema);
+export const Service = mongoose.model<TService>('Service', serviceSchema);

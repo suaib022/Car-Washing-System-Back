@@ -27,13 +27,13 @@ const CreateSlotValidationSchema = z.object({
       required_error: 'Service Id is required !',
     }),
     date: z.string({
-      invalid_type_error: 'Description must be a string !',
-      required_error: 'Description is required !',
+      invalid_type_error: 'Date must be a string !',
+      required_error: 'Date is required !',
     }),
     startTime: startTime,
     endTime: endTime,
     isBooked: z
-      .array(z.enum([...BookingStatus] as [string, ...string[]]))
+      .string(z.enum([...BookingStatus] as [string, ...string[]]))
       .optional(),
   }),
 });

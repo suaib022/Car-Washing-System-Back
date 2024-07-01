@@ -31,8 +31,6 @@ const createSlotIntoDB = async (payload: TSlot) => {
     startTimesMinuteInNumber;
 
   const serviceDuration = service?.duration as number;
-  // console.log('totalTime', totalTime);
-  // console.log('serviceDuration', serviceDuration);
 
   if (serviceDuration > totalTime) {
     throw new AppError(
@@ -54,6 +52,7 @@ const createSlotIntoDB = async (payload: TSlot) => {
       date: payload.date,
       startTime: startTime,
       endTime: endTime as string,
+      isBooked: payload.isBooked || 'available',
     };
     const data = new Slot(SlotData);
     const savedData = await data.save();
@@ -61,14 +60,19 @@ const createSlotIntoDB = async (payload: TSlot) => {
     startTime = incrementTime(startTime, service?.duration) as string;
     endTime = incrementTime(endTime as string, service?.duration);
   }
-  // console.log('totalSlots', totalSlots);
-
-  // console.log(incrementTime(payload.startTime, service?.duration));
-  // console.log(incrementTime(payload.endTime, service?.duration));
-  // console.log('---------------');
-  console.log('res:', result);
+  return result;
 };
 
+const getAllSlotsFromDB = async (query: Record<string, unknown>) => {
+  const availableSlots = Slot.find({ isBooked: 'available' });
+
+  const result = await availableSlots.find({
+    $or: [{ date: query.date }, { service: query.serviceId }],
+  });
+
+  return result;
+};
 export const SlotServices = {
   createSlotIntoDB,
+  getAllSlotsFromDB,
 };
