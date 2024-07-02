@@ -6,23 +6,31 @@ import { createToken } from '../../Utils/createToken';
 import config from '../../config';
 
 const registerUserIntoDB = async (payload: TUser) => {
-  console.log('object');
   const result = await User.create(payload);
   return result;
 };
 
 const logInUser = async (payload: TLoginUser) => {
-  // user check in DB
+  /**
+   * 1. Check if the user exists before in DB by email
+   * 2. Check if the password is correct
+   * 3. create an jwt accessToken for the user
+   * 4. logIn user
+   */
+
+  // step - 1
   const user = await User.doesUserExists(payload.email);
 
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, 'User Not Found !');
   }
 
-  // check password
+  // step - 2
   if (!(await User.doesPasswordMatch(payload.password, user?.password))) {
     throw new AppError(httpStatus.FORBIDDEN, 'Password does not match !');
   }
+
+  // step - 3
 
   const jwtPayload = {
     userEmail: user?.email,
@@ -35,17 +43,12 @@ const logInUser = async (payload: TLoginUser) => {
     config.jwt_access_expires_in as string,
   );
 
+  // step - 4
   const email = user.email;
   const userWithoutPassword = await User.findOne(
     { email },
     {
-      name: 1,
-      email: 1,
-      phone: 1,
-      role: 1,
-      address: 1,
-      createdAt: 1,
-      updatedAt: 1,
+      password: 0,
     },
   );
 

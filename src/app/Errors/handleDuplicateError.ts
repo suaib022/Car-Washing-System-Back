@@ -1,14 +1,10 @@
 import { TErrorSources, TGenericErrorResponse } from '../Interface/error';
 
 const handleDuplicateError = (err: any): TGenericErrorResponse => {
-  const match = err.message.match(/"([^"]*)"/);
-
-  const extractedMessage = match && match[1];
-
-  const errorSources: TErrorSources = [
+  const errorMessages: TErrorSources = [
     {
       path: '',
-      message: `${extractedMessage} already exists !`,
+      message: err?.errorResponse?.errmsg,
     },
   ];
 
@@ -16,8 +12,8 @@ const handleDuplicateError = (err: any): TGenericErrorResponse => {
 
   return {
     statusCode,
-    message: 'Already exists',
-    errorSources,
+    message: err?.errorResponse?.errmsg,
+    errorMessages,
   };
 };
 

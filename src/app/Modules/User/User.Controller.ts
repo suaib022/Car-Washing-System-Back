@@ -20,7 +20,7 @@ const logInUser = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCose: httpStatus.OK,
     success: true,
-    message: 'User logged In !',
+    message: 'User logged in successfully',
     token: result.accessToken,
     data: result.userWithoutPassword,
   });

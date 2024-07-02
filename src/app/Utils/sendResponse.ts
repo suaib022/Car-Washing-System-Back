@@ -1,6 +1,6 @@
 import { Response } from 'express';
 
-type TResponse<T> = {
+export type TResponse<T> = {
   success: boolean;
   statusCose: number;
   message?: string;

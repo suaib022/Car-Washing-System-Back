@@ -2,6 +2,7 @@ import httpStatus from 'http-status';
 import catchAsync from '../../Utils/catchAsync';
 import sendResponse from '../../Utils/sendResponse';
 import { ServiceServices } from './Service.Service';
+import noDataFound from '../../Utils/noDataFound';
 
 const createService = catchAsync(async (req, res) => {
   const result = await ServiceServices.createServiceIntoDB(req.body);
@@ -16,6 +17,10 @@ const createService = catchAsync(async (req, res) => {
 
 const getAllServices = catchAsync(async (req, res) => {
   const result = await ServiceServices.getAllServicesFromDB();
+
+  if (result.length === 0) {
+    return noDataFound(res);
+  }
 
   sendResponse(res, {
     statusCose: httpStatus.OK,
