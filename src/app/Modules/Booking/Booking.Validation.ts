@@ -12,8 +12,8 @@ const CreateBookingValidationSchema = z.object({
       required_error: 'Slot Id is required !',
     }),
     vehicleBrand: z.string({
-      invalid_type_error: 'VehicleBrand must be a string !',
-      required_error: 'VehicleBrand is required !',
+      invalid_type_error: 'Vehicle Brand must be a string !',
+      required_error: 'Vehicle Brand is required !',
     }),
     vehicleModel: z.string({
       invalid_type_error: 'Vehicle Model must be a string !',
@@ -23,8 +23,8 @@ const CreateBookingValidationSchema = z.object({
       invalid_type_error: 'Manufacturing Year must be a number !',
       required_error: 'Manufacturing Year is required !',
     }),
-    registrationPlate: z.number({
-      invalid_type_error: 'Registration Plate must be a number !',
+    registrationPlate: z.string({
+      invalid_type_error: 'Registration Plate must be a string !',
       required_error: 'Registration Plate is required !',
     }),
     vehicleType: z.string(z.enum([...VehicleTypes] as [string, ...string[]])),
@@ -34,14 +34,3 @@ const CreateBookingValidationSchema = z.object({
 export const BookingValidations = {
   CreateBookingValidationSchema,
 };
-
-/**
-   *   customer?: string;
-  service: Types.ObjectId;
-  slot: Types.ObjectId;
-  vehicleType: TVehicleTypes;
-  vehicleBrand: string;
-  vehicleModel: string;
-  manufacturingYear: number;
-  registrationPlate: string;
-  */

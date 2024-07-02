@@ -29,7 +29,7 @@ export const userSchema = new Schema<TUser>(
       type: String,
       enum: {
         values: Role,
-        message: '{Value} must be a valid role !',
+        message: `Role must be one of ${Role}`,
       },
       required: true,
     },

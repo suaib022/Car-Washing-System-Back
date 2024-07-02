@@ -7,7 +7,12 @@ import config from '../../config';
 
 const registerUserIntoDB = async (payload: TUser) => {
   const result = await User.create(payload);
-  return result;
+  const newResult = result.toObject();
+
+  delete newResult?.__v;
+  delete newResult?.password;
+
+  return newResult;
 };
 
 const logInUser = async (payload: TLoginUser) => {
@@ -49,6 +54,7 @@ const logInUser = async (payload: TLoginUser) => {
     { email },
     {
       password: 0,
+      __v: 0,
     },
   );
 

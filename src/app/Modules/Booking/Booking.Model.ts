@@ -18,6 +18,13 @@ const BookingSchema = new Schema<TBooking>(
       required: true,
       ref: 'Slot',
     },
+    vehicleType: {
+      type: String,
+      enum: {
+        values: VehicleTypes,
+        message: `Vehicle types must be one of ${VehicleTypes}`,
+      },
+    },
     vehicleBrand: {
       type: String,
       required: true,
@@ -33,13 +40,6 @@ const BookingSchema = new Schema<TBooking>(
     registrationPlate: {
       type: String,
       required: true,
-    },
-    vehicleType: {
-      type: String,
-      enum: {
-        values: VehicleTypes,
-        message: '{Value} must be a valid vehicle !',
-      },
     },
   },
   {

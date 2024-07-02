@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { TSlot } from './Slot.Interface';
 import { BookingStatus } from './Slot.Constant';
 
@@ -25,7 +25,7 @@ const SlotSchema = new Schema<TSlot>(
       type: String,
       enum: {
         values: BookingStatus,
-        message: '{Value} must be a valid status !',
+        message: `Status must be one of ${BookingStatus}`,
       },
       default: 'available',
     },
