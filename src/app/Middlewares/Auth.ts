@@ -34,6 +34,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
 
     // step - 3
     const user = await User.doesUserExists(userEmail);
+    console.log('object', user);
 
     if (!user) {
       throw new AppError(httpStatus.NOT_FOUND, 'User Not Found !');

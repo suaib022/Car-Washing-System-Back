@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { TService } from './Service.Interface';
 
 export const serviceSchema = new Schema<TService>(

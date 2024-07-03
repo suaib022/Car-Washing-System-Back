@@ -15,7 +15,8 @@ const createBookingIntoDB = async (token: string, payload: TReqBooking) => {
    * 3. Check if the Service exists and also check if it is deleted
    * 4. Check the existence and availability of the requested slot
    * 5. Check if the requested Slot contains the requested Service
-   * 6. Create booking for the User
+   * 6. Update Slot booking status
+   * 7. Create booking for the User
    */
 
   // step - 1
@@ -69,6 +70,11 @@ const createBookingIntoDB = async (token: string, payload: TReqBooking) => {
   }
 
   // step - 6
+  await Slot.findByIdAndUpdate(payload.slotId, {
+    isBooked: 'booked',
+  });
+
+  // step - 7
   const {
     customerId,
     serviceId,
@@ -101,7 +107,7 @@ const createBookingIntoDB = async (token: string, payload: TReqBooking) => {
     ).populate({ path: 'slot', select: '-createdAt -updatedAt -__v' })
   ).populate({
     path: 'customer',
-    select: '-createdAt -updatedAt -__v',
+    select: '-createdAt -updatedAt -__v -role',
   });
 
   const newResult = result.toObject();
@@ -115,7 +121,7 @@ const getAllBookingsFromDB = async () => {
   const result = await Booking.find()
     .populate({ path: 'service', select: '-createdAt -updatedAt -__v' })
     .populate({ path: 'slot', select: '-createdAt -updatedAt -__v' })
-    .populate({ path: 'customer', select: '-createdAt -updatedAt -__v' })
+    .populate({ path: 'customer', select: '-createdAt -updatedAt -__v -role' })
     .select('-__v');
 
   return result;
@@ -146,13 +152,3 @@ export const BookingServices = {
   getAllBookingsFromDB,
   getUsersBookingsFromDB,
 };
-
-// const result = (
-//   await (
-//     await (
-//       await (
-//         await Booking.create(bookingData)
-//       ).populate({ path: 'service', select: '-createdAt -updatedAt -__v' })
-//     ).populate({ path: 'slot', select: '-createdAt -updatedAt -__v' })
-//   ).populate({ path: 'customer', select: '-createdAt -updatedAt -__v' })
-// ).populate({ path: '', select: '-__v' });

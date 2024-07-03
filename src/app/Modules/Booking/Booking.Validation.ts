@@ -11,6 +11,7 @@ const CreateBookingValidationSchema = z.object({
       invalid_type_error: 'Slot Id must be a string !',
       required_error: 'Slot Id is required !',
     }),
+    vehicleType: z.string(z.enum([...VehicleTypes] as [string, ...string[]])),
     vehicleBrand: z.string({
       invalid_type_error: 'Vehicle Brand must be a string !',
       required_error: 'Vehicle Brand is required !',
@@ -27,7 +28,6 @@ const CreateBookingValidationSchema = z.object({
       invalid_type_error: 'Registration Plate must be a string !',
       required_error: 'Registration Plate is required !',
     }),
-    vehicleType: z.string(z.enum([...VehicleTypes] as [string, ...string[]])),
   }),
 });
 

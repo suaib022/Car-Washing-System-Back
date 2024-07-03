@@ -83,21 +83,26 @@ const createSlotIntoDB = async (payload: TSlot) => {
     startTime = incrementTime(startTime, service?.duration) as string;
     endTime = incrementTime(endTime as string, service?.duration);
   }
-  return result;
+  const newResult = result.map((slot) => slot.toObject());
+  newResult.forEach((slot) => delete slot.__v);
+
+  return newResult;
 };
 
 const getAllSlotsFromDB = async (query: Record<string, unknown>) => {
-  const availableSlots = Slot.find({ isBooked: 'available' });
+  const queryObj: any = { isBooked: 'available' };
 
-  if (query.date || query.serviceId) {
-    const result = await availableSlots.find({
-      $and: [{ date: query?.date }, { service: query?.serviceId }],
-    });
-
-    return result;
+  if (query.serviceId) {
+    queryObj.service = query.serviceId;
+  }
+  if (query.date) {
+    queryObj.date = query.date;
   }
 
-  return availableSlots;
+  const result = await Slot.find(queryObj)
+    .select('-__v')
+    .populate({ path: 'service', select: '-__v' });
+  return result;
 };
 export const SlotServices = {
   createSlotIntoDB,
