@@ -3,9 +3,14 @@ export const incrementTime = (time: string, duration: number) => {
   const minute = Number(time.split(':')[1]);
 
   if (minute + duration < 60) {
+    console.log('object');
     if (minute + duration < 10 || hour < 10) {
       if (hour < 10) {
-        return `0${hour}:0${minute + duration}`;
+        if (minute + duration < 10) {
+          return `0${hour}:0${minute + duration}`;
+        } else {
+          return `0${hour}:${minute + duration}`;
+        }
       } else {
         return `${hour}:0${minute + duration}`;
       }

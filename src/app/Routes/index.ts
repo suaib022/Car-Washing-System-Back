@@ -3,6 +3,7 @@ import { UserRoutes } from '../Modules/User/User.Route';
 import { ServiceRoutes } from '../Modules/Service/Service.Route';
 import { SlotRoutes } from '../Modules/Slot/Slot.Route';
 import { BookingRoutes } from '../Modules/Booking/Booking.Route';
+import { UserBookingRoutes } from '../Modules/Booking/UserBookingsRoute';
 
 const router = Router();
 
@@ -34,6 +35,10 @@ const moduleRoutes: RouteConfig[] = [
   {
     path: '/bookings',
     route: BookingRoutes,
+  },
+  {
+    path: '/my-bookings',
+    route: UserBookingRoutes,
   },
 ];
 
