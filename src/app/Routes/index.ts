@@ -4,6 +4,7 @@ import { ServiceRoutes } from '../Modules/Service/Service.Route';
 import { SlotRoutes } from '../Modules/Slot/Slot.Route';
 import { BookingRoutes } from '../Modules/Booking/Booking.Route';
 import { UserBookingRoutes } from '../Modules/Booking/UserBookingsRoute';
+import { ReviewRoutes } from '../Modules/Review/Review.Route';
 
 const router = Router();
 
@@ -29,7 +30,7 @@ const moduleRoutes: RouteConfig[] = [
     ],
   },
   {
-    path: '/slots/availability',
+    path: '/slots',
     route: SlotRoutes,
   },
   {
@@ -39,6 +40,10 @@ const moduleRoutes: RouteConfig[] = [
   {
     path: '/my-bookings',
     route: UserBookingRoutes,
+  },
+  {
+    path: '/reviews',
+    route: ReviewRoutes,
   },
 ];
 

@@ -21,6 +21,10 @@ export const userSchema = new Schema<TUser>(
       required: true,
       select: 0,
     },
+    image: {
+      type: String,
+      required: true,
+    },
     phone: {
       type: String,
       required: true,

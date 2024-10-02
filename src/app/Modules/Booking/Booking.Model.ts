@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { TBooking } from './Booking.Interface';
 import { VehicleTypes } from './Booking.Constant';
 
@@ -40,6 +40,9 @@ const BookingSchema = new Schema<TBooking>(
     registrationPlate: {
       type: String,
       required: true,
+    },
+    due: {
+      type: Schema.Types.Mixed,
     },
   },
   {

@@ -1,3 +1,4 @@
+import QueryBuilder from '../../builder/QueryBuilder';
 import { TService } from './Service.Interface';
 import { Service } from './Service.Model';
 
@@ -9,8 +10,15 @@ const createServiceIntoDB = async (payload: TService) => {
   return newResult;
 };
 
-const getAllServicesFromDB = async () => {
-  const result = await Service.find().select('-__v');
+const getAllServicesFromDB = async (query: Record<string, unknown>) => {
+  const serviceSearchableFields = ['name'];
+
+  const serviceQuery = new QueryBuilder(Service.find().select('-__v'), query)
+    .search(serviceSearchableFields)
+    .filter()
+    .sort()
+    .paginate();
+  const result = await serviceQuery.modelQuery;
   return result;
 };
 
@@ -28,7 +36,7 @@ const updateServiceInDB = async (id: string, payload: Partial<TService>) => {
   return result;
 };
 
-const deleteServiceFromDB = async (id: string) => {
+const softDeleteServiceFromDB = async (id: string) => {
   const result = await Service.findByIdAndUpdate(
     id,
     {
@@ -42,10 +50,17 @@ const deleteServiceFromDB = async (id: string) => {
   return result;
 };
 
+const permanentDeleteServiceFromDb = async (id: string) => {
+  const result = await Service.findByIdAndDelete(id);
+
+  return result;
+};
+
 export const ServiceServices = {
   createServiceIntoDB,
   getAllServicesFromDB,
   getSingleServiceFromDB,
   updateServiceInDB,
-  deleteServiceFromDB,
+  softDeleteServiceFromDB,
+  permanentDeleteServiceFromDb,
 };

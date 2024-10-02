@@ -16,7 +16,7 @@ const createService = catchAsync(async (req, res) => {
 });
 
 const getAllServices = catchAsync(async (req, res) => {
-  const result = await ServiceServices.getAllServicesFromDB();
+  const result = await ServiceServices.getAllServicesFromDB(req.query);
 
   if (result.length === 0) {
     return noDataFound(res);
@@ -55,14 +55,24 @@ const updateService = catchAsync(async (req, res) => {
   });
 });
 
-const deleteService = catchAsync(async (req, res) => {
-  const result = await ServiceServices.deleteServiceFromDB(req.params.id);
+const softDeleteService = catchAsync(async (req, res) => {
+  const result = await ServiceServices.softDeleteServiceFromDB(req.params.id);
 
   sendResponse(res, {
     statusCose: httpStatus.OK,
     success: true,
-    message: 'Service deleted successfully',
+    message: 'Mover to recycle bin',
     data: result,
+  });
+});
+
+const permanentDeleteService = catchAsync(async (req, res) => {
+  await ServiceServices.permanentDeleteServiceFromDb(req.params.id);
+
+  sendResponse(res, {
+    statusCose: httpStatus.OK,
+    success: true,
+    message: 'Service deleted permanently',
   });
 });
 
@@ -71,5 +81,6 @@ export const ServiceControllers = {
   getAllServices,
   getSingleService,
   updateService,
-  deleteService,
+  softDeleteService,
+  permanentDeleteService,
 };

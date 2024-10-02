@@ -10,6 +10,7 @@ export type TBooking = {
   vehicleModel: string;
   manufacturingYear: number;
   registrationPlate: string;
+  due: string | number;
 };
 
 export type TReqBooking = {
@@ -21,4 +22,15 @@ export type TReqBooking = {
   vehicleModel: string;
   manufacturingYear: number;
   registrationPlate: string;
+  due: string | number;
+};
+
+export type TPaymentData = {
+  bookingId: Types.ObjectId;
+  transactionId: string;
+  totalPrice: number;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  customerAddress: string;
 };

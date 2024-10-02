@@ -5,7 +5,7 @@ export type TResponse<T> = {
   statusCose: number;
   message?: string;
   token?: string;
-  data: T;
+  data?: T;
 };
 
 const sendResponse = <T>(res: Response, data: TResponse<T>) => {

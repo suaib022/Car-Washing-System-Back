@@ -15,6 +15,21 @@ const createSlot = catchAsync(async (req, res) => {
   });
 });
 
+// const getAllAvailableSlots = catchAsync(async (req, res) => {
+//   const result = await SlotServices.getAllAvailableSlotsFromDB(req.query);
+
+//   if (result.length === 0) {
+//     return noDataFound(res);
+//   }
+
+//   sendResponse(res, {
+//     statusCose: httpStatus.OK,
+//     success: true,
+//     message: 'Available slots retrieved successfully',
+//     data: result,
+//   });
+// });
+
 const getAllSlots = catchAsync(async (req, res) => {
   const result = await SlotServices.getAllSlotsFromDB(req.query);
 
@@ -25,12 +40,37 @@ const getAllSlots = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCose: httpStatus.OK,
     success: true,
-    message: 'Available slots retrieved successfully',
+    message: 'All slots retrieved successfully',
+    data: result,
+  });
+});
+
+const getSingleSlot = catchAsync(async (req, res) => {
+  const result = await SlotServices.getSingleSlotFromDB(req.params.slotId);
+
+  sendResponse(res, {
+    statusCose: httpStatus.OK,
+    success: true,
+    message: 'Slot retrieved successfully',
+    data: result,
+  });
+});
+
+const updateSlot = catchAsync(async (req, res) => {
+  const result = await SlotServices.updateSlotInDB(req.params.slotId, req.body);
+
+  sendResponse(res, {
+    statusCose: httpStatus.OK,
+    success: true,
+    message: 'Slot updated successfully',
     data: result,
   });
 });
 
 export const SlotControllers = {
   createSlot,
+  // getAllAvailableSlots,
   getAllSlots,
+  updateSlot,
+  getSingleSlot,
 };

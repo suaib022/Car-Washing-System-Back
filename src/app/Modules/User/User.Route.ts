@@ -17,4 +17,14 @@ router.post(
   UserControllers.logInUser,
 );
 
+router.put(
+  '/updateUser/:userId',
+  validateRequest(UserValidations.UpdateUserValidationSchema),
+  UserControllers.updateUser,
+);
+
+router.get('/users', UserControllers.getAllUsers);
+
+router.get('/users/:userEmail', UserControllers.getSingleUser);
+
 export const UserRoutes = router;

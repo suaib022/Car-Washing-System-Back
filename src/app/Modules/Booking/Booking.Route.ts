@@ -7,6 +7,15 @@ import { BookingValidations } from './Booking.Validation';
 
 const router = express.Router();
 
+// router.post(
+//   '/',
+//   auth(USER_ROLE.user),
+//   validateRequest(BookingValidations.CreateBookingValidationSchema),
+//   BookingControllers.createBooking,
+// );
+
+// router.get('/', auth(USER_ROLE.admin), BookingControllers.getAllBookings);
+
 router.post(
   '/',
   auth(USER_ROLE.user),
@@ -14,6 +23,12 @@ router.post(
   BookingControllers.createBooking,
 );
 
-router.get('/', auth(USER_ROLE.admin), BookingControllers.getAllBookings);
+router.get('/:slotId', BookingControllers.getSingleBooking);
+
+router.get('/', BookingControllers.getAllBookings);
+
+router.post('/:slotId', BookingControllers.payBooking);
+
+router.post('/payment/confirmation', BookingControllers.confirmationController);
 
 export const BookingRoutes = router;

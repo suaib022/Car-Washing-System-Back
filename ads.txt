@@ -1,0 +1,101 @@
+{
+  response: {
+    status: 200,
+    statusText: 'OK',
+    headers: Object [AxiosHeaders] {
+      server: 'nginx',
+      date: 'Sat, 28 Sep 2024 12:43:30 GMT',
+      'content-type': 'application/json',
+      'transfer-encoding': 'chunked',
+      connection: 'keep-alive',
+      'access-control-allow-origin': '*',
+      'access-control-allow-methods': 'GET, POST',
+      'access-control-allow-headers': 'X-Requested-With',
+      'strict-transport-security': 'max-age=31536000'
+    },
+    config: {
+      transitional: [Object],
+      adapter: [Array],
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      env: [Object],
+      validateStatus: [Function: validateStatus],
+      headers: [Object [AxiosHeaders]],
+      method: 'post',
+      url: 'https://sandbox.aamarpay.com/jsonpost.php',
+      data: '{"store_id":"aamarpaytest","signature_key":"dbb74894e82415a2f7ff0ec3a97e4183","tran_id":"123123173","success_url":"http://www.merchantdomain.com/successpage.html","fail_url":"http://www.merchantdomain.com/failedpage.html","cancel_url":"http://www.merchantdomain.com/cancelpage.html","amount":"10.0","currency":"BDT","desc":"Merchant Registration Payment","cus_name":"Name","cus_email":"payer@merchantcustomer.com","cus_add1":"House B-158 Road 22","cus_add2":"Mohakhali DOHS","cus_city":"Dhaka","cus_state":"Dhaka","cus_postcode":"1206","cus_country":"Bangladesh","cus_phone":"+8801704","type":"json"}'  
+    },
+    request: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: false,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: '600',
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: true,
+      socket: [TLSSocket],
+      _header: 'POST /jsonpost.php HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/json\r\n' +
+        'User-Agent: axios/1.7.7\r\n' +
+        'Content-Length: 600\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: sandbox.aamarpay.com\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/jsonpost.php',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'sandbox.aamarpay.com',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    data: { tran_id: 'Dublicate Transaction ID Provided By You.' }
+  }
+}

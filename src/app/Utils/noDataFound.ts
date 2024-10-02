@@ -4,9 +4,9 @@ import httpStatus from 'http-status';
 
 const noDataFound = (res: Response) => {
   return sendResponse(res, {
-    success: false,
+    success: true,
     message: 'No Data Found',
-    statusCose: httpStatus.NOT_FOUND,
+    statusCose: httpStatus.OK,
     data: [],
   });
 };
