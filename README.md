@@ -119,3 +119,9 @@ To use the project, follow these steps:
    - `PUT /api/auth/updateUser/:userId`: Update user information.
    - `GET /api/auth/users`: Retrieve all users.
    - `GET /api/auth/users/:userEmail`: Retrieve a single user by email.
+
+
+## Project's Live Link
+**https://car-wash-back.vercel.app/**
+
+---
