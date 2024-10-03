@@ -7,15 +7,9 @@ import { USER_ROLE } from '../User/User.Constant';
 
 const router = express.Router();
 
-// router.post(
-//   '/',
-//   auth(USER_ROLE.admin),
-//   validateRequest(slotValidations.CreateSlotValidationSchema),
-//   SlotControllers.createSlot,
-// );
-
 router.post(
   '/',
+  auth(USER_ROLE.admin),
   validateRequest(slotValidations.CreateSlotValidationSchema),
   SlotControllers.createSlot,
 );
@@ -26,6 +20,7 @@ router.get('/', SlotControllers.getAllSlots);
 
 router.put(
   '/:slotId',
+  auth(USER_ROLE.admin),
   validateRequest(slotValidations.UpdateSlotValidationSchema),
   SlotControllers.updateSlot,
 );

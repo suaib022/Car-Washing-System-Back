@@ -7,15 +7,9 @@ import { USER_ROLE } from '../User/User.Constant';
 
 const router = express.Router();
 
-// router.post(
-//   '/',
-//   auth(USER_ROLE.admin),
-//   validateRequest(ServiceValidations.CreateServiceValidationSchema),
-//   ServiceControllers.createService,
-// );
-
 router.post(
   '/',
+  auth(USER_ROLE.admin),
   validateRequest(ServiceValidations.CreateServiceValidationSchema),
   ServiceControllers.createService,
 );
@@ -24,23 +18,23 @@ router.get('/', ServiceControllers.getAllServices);
 
 router.get('/:id', ServiceControllers.getSingleService);
 
-// router.put(
-//   '/:id',
-//   auth(USER_ROLE.admin),
-//   validateRequest(ServiceValidations.UpdateServiceValidationSchema),
-//   ServiceControllers.updateService,
-// );
-
-// router.patch('/:id', auth(USER_ROLE.admin), ServiceControllers.deleteService);
-
 router.put(
   '/:id',
+  auth(USER_ROLE.admin),
   validateRequest(ServiceValidations.UpdateServiceValidationSchema),
   ServiceControllers.updateService,
 );
 
-router.patch('/:id', ServiceControllers.softDeleteService);
+router.patch(
+  '/:id',
+  auth(USER_ROLE.admin),
+  ServiceControllers.softDeleteService,
+);
 
-router.delete('/:id', ServiceControllers.permanentDeleteService);
+router.delete(
+  '/:id',
+  auth(USER_ROLE.admin),
+  ServiceControllers.permanentDeleteService,
+);
 
 export const ServiceRoutes = router;
